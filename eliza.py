@@ -1,4 +1,6 @@
 
+#   BASIC Version:
+#
 #	ELIZA/DOCTOR
 #	CREATED BY JOSEPH WEIZENBAUM
 #	THIS VERSION BY JEFF SHRAGER
@@ -37,10 +39,11 @@ def readingLinesWithRegEx():
         dataElementsCount = 0
         with open('20120310ShragerNorthEliza.c64basic') as file_object:
             contents = file_object.readlines()
-            print('\n')
+            # TODO February 29, 2020: not sure why next statement exists
+            #print('\n')
             for line in contents:
 
-                #find if the pass line contains BASIC DATA statements
+                #find if the line contains BASIC DATA statements
                 #pattern is 4 digit line number followed by space then 'DATA'
                 pattern = '(\d{4}) DATA'
                 
@@ -69,11 +72,12 @@ def readingLinesWithRegEx():
                         dataElements.append(dataElementValue[element].strip('"'))
                         dataElementsCount = dataElementsCount + 1
                     
-                    
-    except OSError as booboo:
-        print("We had a booboo!!")
-        print(booboo)
+    # TODO February 29, 2020: make this look more professional                
+    except OSError as fileReadError:
+        print("The was an error reading the BASIC file.")
+        print(fileReadError)
 
+    # TODO February 29, 2020: remove these statements used for debugging
     #print("\nFOUND " + str(dataStatementsCount) + " DATA STATEMENTS")
     #print("\nFOUND " + str(dataElementsCount) + " DATA ELEMENTS\n")
 
@@ -91,6 +95,8 @@ def getUserInput():
 
 
 def findKeyword():
+
+# TODO February 29, 2020: Remove these global definitions
 
 ##    global dataPointer
 ##    global saveKeywordNumber
@@ -131,6 +137,7 @@ def conjugateString(text, keyword, location):
             elif response in conjugateText:
                 conjugateText=conjugateText.replace(response, said)
             
+    # TODO February 29, 2020: remove statements used for debugging
     # print(text)
     # print(conjugateText)
     
@@ -181,7 +188,7 @@ for x in range(0,n1):
 
 # -----USER INPUT SECTION-----
 
-print("HI! I'M ELIZA. WHAT'S YOUR PROBLEM?")
+print("\nHI! I'M ELIZA. WHAT'S YOUR PROBLEM?")
 
 previousProblem = ''  # Will hold what was previously said
 
@@ -207,6 +214,7 @@ while True:
                 keywordNumber = 35  # Indicate NOKEYFOUND
             # Then build and print response
             dataPointer=n1+n2  # Start of resoponses
+            # TODO February 29, 2020: k no longer needed - remove
             #k=keywordNumber
             foundResponse=dataElements[dataPointer+rightReply[keywordNumber]]
             rightReply[keywordNumber]=rightReply[keywordNumber]+1

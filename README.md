@@ -1,2 +1,2 @@
 # eliza
-A python interpretation of a BASIC version of Eliza
+A Python interpretation of a BASIC version of Eliza
